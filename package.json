@@ -1,0 +1,19 @@
+{
+  "name": "vue-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "packages/component"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xiaopf@300624.cn",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^3.1.8",
+    "vue": "3.2.41",
+    "vue-demi": "^0.13.11"
+  }
+}

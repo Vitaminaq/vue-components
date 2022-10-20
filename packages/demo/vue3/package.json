@@ -1,0 +1,22 @@
+{
+  "name": "vue3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vue-demi-switch 3 && vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "3.2.41",
+    "vue-demi": "^0.13.11"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.2",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vue-tsc": "^0.40.4"
+  }
+}
