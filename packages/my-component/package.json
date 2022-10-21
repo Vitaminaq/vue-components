@@ -1,0 +1,40 @@
+{
+  "name": "vue-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:v3": "vue-demi-switch 3 vue3 && jiti ./build/component",
+    "build:v2": "vue-demi-switch 2 vue2 && jiti ./build/component",
+    "build": "npm run build:v3 && npm run build:v2"
+  },
+  "dependencies": {
+    "vue": "3.2.41",
+    "vue-demi": "^0.13.11"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.2",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/composition-api": "^1.7.1",
+    "@vue/runtime-dom": "^3.2.31",
+    "glob": "^8.0.3",
+    "jiti": "^1.16.0",
+    "local-pkg": "^0.4.2",
+    "typescript": "^4.6.4",
+    "unplugin-vue2-script-setup": "^0.11.3",
+    "vite": "^3.1.8",
+    "vite-plugin-vue2": "^2.0.2",
+    "vue-template-compiler": "2.6.14",
+    "vue-tsc": "^0.40.4",
+    "vue2": "npm:vue@2.6.14",
+    "vue3": "npm:vue@^3.2.41"
+  }
+}
