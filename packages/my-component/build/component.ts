@@ -6,9 +6,9 @@ import { importModule } from "local-pkg";
 
 const root = process.cwd();
 
-const resolve = (str: string) => {
-  return path.resolve(__dirname, str)
-}
+// const resolve = (str: string) => {
+//   return path.resolve(__dirname, str)
+// }
 
 export const start = () => {
   console.log("当前vue版本", version);
