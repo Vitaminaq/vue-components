@@ -5,18 +5,27 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./lib/index.js",
-      "import": "./es/index.mjs"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/es/index.mjs"
     },
-    "./*": "./*"
+    "./es": "./dist/es/*",
+    "./cjs": "./dist/cjs/*",
+    "./*": "./dist/*"
   },
+  "types": "dist/vue-types",
   "scripts": {
-    "dev": "vite",
-    "build:v3": "vue-demi-switch 3 vue3 && jiti ./build/component",
-    "build:v2": "vue-demi-switch 2 vue2 && jiti ./build/component",
-    "build": "npm run build:v3 && npm run build:v2"
+    "postinstall": "jiti ./scripts/postinstall",
+    "clean": "rimraf dist",
+    "switch:v3": "vue-demi-switch 3 vue3",
+    "switch:v2": "vue-demi-switch 2 vue2",
+    "dev": "npm run switch:v3 && cross-env NODE_ENV=development vite",
+    "build:v3": "npm run switch:v3 && jiti ./build/component",
+    "build:v2": "npm run switch:v2 && jiti ./build/component",
+    "build": "npm run clean && npm run build:v3 && npm run build:v2"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "fs-extra": "^10.1.0",
     "vue": "3.2.41",
     "vue-demi": "^0.13.11"
   },
@@ -28,9 +37,11 @@
     "glob": "^8.0.3",
     "jiti": "^1.16.0",
     "local-pkg": "^0.4.2",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.4",
     "unplugin-vue2-script-setup": "^0.11.3",
     "vite": "^3.1.8",
+    "vite-plugin-dts": "^1.6.6",
     "vite-plugin-vue2": "^2.0.2",
     "vue-template-compiler": "2.6.14",
     "vue-tsc": "^0.40.4",

@@ -10,9 +10,11 @@
     "allowJs": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "lib": ["ESNext", "DOM"],
   },
   "exclude": [
-    "**/demo/**"
+    "**/demo/**",
+    "**/**/**/dist/**"
   ]
 }

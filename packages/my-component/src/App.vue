@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// import Button from '@component/Button/Button.vue';
-import { Button } from './v3.mjs';
+import Button from '@component/Button/Button.vue';
 </script>
 
 <template>
