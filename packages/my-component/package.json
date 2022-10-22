@@ -8,11 +8,23 @@
       "require": "./dist/cjs/index.js",
       "import": "./dist/es/index.mjs"
     },
-    "./es": "./dist/es/*",
-    "./cjs": "./dist/cjs/*",
-    "./*": "./dist/*"
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
+    "./es/*": "./es/*.mjs",
+    "./es/*.mjs": "./es/*.mjs",
+    "./es/*/*": "./es/*/index.mjs",
+    "./es/*/*.mjs": "./es/*/index.mjs",
+    "./cjs/*": "./cjs/*.js",
+    "./cjs/*.js": "./cjs/*.js",
+    "./cjs/*/*": "./cjs/*/index.js",
+    "./cjs/*/*.mjs": "./cjs/*/index.js",
+    "./*": "./*"
   },
-  "types": "dist/vue-types",
+  "files": [
+    "dist",
+    "es",
+    "cjs"
+  ],
   "scripts": {
     "postinstall": "jiti ./scripts/postinstall",
     "clean": "rimraf dist",
@@ -36,6 +48,8 @@
     "@vue/runtime-dom": "^3.2.31",
     "glob": "^8.0.3",
     "jiti": "^1.16.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
     "local-pkg": "^0.4.2",
     "rimraf": "^3.0.2",
     "typescript": "^4.6.4",

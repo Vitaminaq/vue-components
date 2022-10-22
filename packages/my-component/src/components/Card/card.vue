@@ -1,10 +1,11 @@
 <template>
-    <div>{{ text }}</div>
+    <div>{{ props.msg }}</div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue-demi';
-
-const text = computed(() => {
-    return '这是一张绝美卡片'
+const props = defineProps({
+    msg: {
+        type: String,
+        default: '这是一张绝美卡片'
+    }
 })
 </script>

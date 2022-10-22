@@ -8,7 +8,7 @@ import { resolve } from "./utils";
 export const start = () => {
   console.log("当前vue版本", version);
   const name = isVue3 ? "vue3" : "vue2";
-  glob("src/components/**/index.ts", {}, async (err, files) => {
+  glob("src/components/**/**.vue", {}, async (err, files) => {
     if (err) return;
     files.forEach(async (file) => {
       const plugins: any[] = [];
@@ -28,7 +28,8 @@ export const start = () => {
         dts({
           // root: resolve("./src"),
           // entryRoot: resolve("./src/components"),
-          outputDir: resolve(`./dist/types/${name}`),
+          outputDir: resolve(`./dist/${name}/es`),
+          exclude: ['src/vite-env.d.ts'],
           cleanVueFileName: true,
           staticImport: true,
           compilerOptions: isVue3
@@ -50,7 +51,7 @@ export const start = () => {
           }
         })
       );
-      console.log(name, file);
+      console.log('需要构建的组件清单：', name, file);
       const list = file.split("/");
       await build({
         plugins,
@@ -66,6 +67,8 @@ export const start = () => {
         },
         build: {
           emptyOutDir: false,
+          minify: 'esbuild',
+          sourcemap: true,
           lib: {
             entry: resolve(file),
             name: "vue-ui",
@@ -74,20 +77,20 @@ export const start = () => {
             },
           },
           rollupOptions: {
-            external: ["vue", "vue-demi"],
+            external: ["vue", "vue-demi", "./*"],
             output: [
               {
                 format: "es",
                 dir: `../my-component/dist/${name}/es/${list[
                   list.length - 2
-                ].toLocaleLowerCase()}`,
+                ]}`,
                 exports: "named",
               },
               {
                 format: "cjs",
                 dir: `../my-component/dist/${name}/cjs/${list[
                   list.length - 2
-                ].toLocaleLowerCase()}`,
+                ]}`,
                 exports: "named",
               },
             ],

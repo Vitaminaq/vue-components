@@ -8,10 +8,11 @@ const count = ref(0);
 
 const add = () => {
     count.value ++;
+    console.log(count.value);
 }
 </script>
 
-<style>
+<style lang="less">
 .add {
     color: red;
 }
