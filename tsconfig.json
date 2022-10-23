@@ -3,18 +3,19 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "es2018",
+    "module": "esnext",
     "moduleResolution": "Node",
     "strict": false,
     "allowJs": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "lib": ["ESNext", "DOM"],
+    "lib": ["esnext", "DOM"],
   },
   "exclude": [
     "**/demo/**",
-    "**/**/**/dist/**"
+    "**/**/**/dist/**",
+    "scripts"
   ]
 }
