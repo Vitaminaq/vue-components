@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Button from '@wefly/vue-ui/es/Button/index';
+import Button from '@wefly/vue-ui/es/Button/Button';
 
 const count = ref(1);
 
