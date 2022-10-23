@@ -1,69 +1,64 @@
 import { build } from "vite";
 import glob from "glob";
 import { isVue3, version } from "vue-demi";
-import { importModule } from "local-pkg";
 import dts from "vite-plugin-dts";
-import { resolve } from "./utils";
+import { resolve, workRoot, getVuePlugins } from "./utils";
 
-export const start = () => {
+export const start = async () => {
   console.log("当前vue版本", version);
   const name = isVue3 ? "vue3" : "vue2";
-  glob("src/components/**/**.vue", {}, async (err, files) => {
+
+  const vuePlugins: any[] = await getVuePlugins();
+
+  glob("src/components/**/**.{vue,ts,js}", {
+    cwd: process.cwd(),
+    absolute: true,
+    onlyFiles: true,
+  }, async (err, files) => {
     if (err) return;
     files.forEach(async (file) => {
-      const plugins: any[] = [];
-      if (isVue3) {
-        console.log("vue3构建插件注入中...");
-        plugins.push((await importModule("@vitejs/plugin-vue")).default());
-      } else {
-        console.log("vue2构建插件注入中...");
-        plugins.push(
-          (await importModule("vite-plugin-vue2")).createVuePlugin()
-        );
-        plugins.push(
-          (await importModule("unplugin-vue2-script-setup/vite")).default()
-        );
-      }
+      console.log('需要构建的组件清单：', name, file);
+
+      const plugins = [...vuePlugins];
+
       plugins.push(
         dts({
-          // root: resolve("./src"),
-          // entryRoot: resolve("./src/components"),
-          outputDir: resolve(`./dist/${name}/es`),
+          entryRoot: `${workRoot}/src/components`,
+          outputDir: [resolve(`./dist/${name}/es`), resolve(`./dist/${name}/cjs`)],
           exclude: ['src/vite-env.d.ts'],
           cleanVueFileName: true,
           staticImport: true,
           compilerOptions: isVue3
             ? {}
             : {
-                baseUrl: ".",
-                paths: {
-                  vue: ["node_modules/vue2"],
-                  "vue/*": ["node_modules/vue2/*"],
-                  "@vue/composition-api": ["node_modules/@vue/composition-api"],
-                  "@vue/runtime-dom": ["node_modules/@vue/runtime-dom"],
-                },
+              baseUrl: ".",
+              paths: {
+                vue: ["node_modules/vue2"],
+                "vue/*": ["node_modules/vue2/*"],
+                "@vue/composition-api": ["node_modules/@vue/composition-api"],
+                "@vue/runtime-dom": ["node_modules/@vue/runtime-dom"],
               },
-          beforeWriteFile(filePath: string, content: string) {
-            return {
-              filePath: filePath.replace('components\\', '').replace('components/', ''),
-              content
-            };
-          }
+            },
+            // beforeWriteFile(filePath: string, content: string) {
+            //   console.log(filePath, 'jjjjjjjjjjjjjjjjjjjj')
+            //   return {
+            //     filePath: filePath.replace('components\\', '').replace('components/', ''),
+            //     content
+            //   };
+            // }
         })
       );
-      console.log('需要构建的组件清单：', name, file);
-      const list = file.split("/");
       await build({
         plugins,
         resolve: {
           alias: isVue3
             ? {}
             : {
-                vue: resolve("./node_modules/vue2"),
-                "@vue/composition-api": resolve(
-                  "./node_modules/@vue/composition-api"
-                ),
-              },
+              vue: resolve("./node_modules/vue2"),
+              "@vue/composition-api": resolve(
+                "./node_modules/@vue/composition-api"
+              ),
+            },
         },
         build: {
           emptyOutDir: false,
@@ -71,27 +66,25 @@ export const start = () => {
           sourcemap: true,
           lib: {
             entry: resolve(file),
-            name: "vue-ui",
-            fileName(format) {
-              return format === "es" ? "index.mjs" : "index.js";
-            },
+            name: "vue-ui"
           },
           rollupOptions: {
-            external: ["vue", "vue-demi", "./*"],
+            external: ["vue", "vue-demi"],
             output: [
               {
                 format: "es",
-                dir: `../my-component/dist/${name}/es/${list[
-                  list.length - 2
-                ]}`,
-                exports: "named",
+                dir: resolve(`./dist/${name}/es`),
+                preserveModules: true,
+                preserveModulesRoot: `${workRoot}/src/components`,
+                entryFileNames: `[name].mjs`,
               },
               {
                 format: "cjs",
-                dir: `../my-component/dist/${name}/cjs/${list[
-                  list.length - 2
-                ]}`,
+                dir: resolve(`./dist/${name}/cjs`),
+                preserveModules: true,
+                preserveModulesRoot: `${workRoot}/src/components`,
                 exports: "named",
+                entryFileNames: `[name].js`,
               },
             ],
           },

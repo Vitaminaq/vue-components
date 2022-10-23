@@ -11,9 +11,9 @@ const add = () => {
     console.log(count.value);
 }
 </script>
-
+<!-- 
 <style lang="less">
 .add {
     color: red;
 }
-</style>
+</style> -->
