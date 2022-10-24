@@ -2,3 +2,5 @@ build
 index.html
 vite.config.ts
 node_modules
+cjs
+es

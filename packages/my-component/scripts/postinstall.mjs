@@ -7,8 +7,15 @@ console.log("当前主项目vue版本：", version);
 
 const dirname = isVue3 ? "vue3" : "vue2";
 
+const clean = async () => {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  await fse.emptyDir(path.resolve(__dirname, '../es'));
+  await fse.emptyDir(() => path.resolve(__dirname, '../cjs'));
+}
+
 const switchVersion = async () => {
   try {
+    await clean();
     const __dirname = path.dirname(fileURLToPath(import.meta.url));
     const rootSrc = path.join(__dirname, `../dist`);
     const libSrc = path.join(rootSrc, `./${dirname}`);

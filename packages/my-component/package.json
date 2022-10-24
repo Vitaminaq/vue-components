@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-ui",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -30,7 +30,7 @@
     "scripts"
   ],
   "scripts": {
-    "postinstall": "rimraf es && rimraf cjs &&node ./scripts/postinstall.mjs",
+    "postinstall": "node ./scripts/postinstall.mjs",
     "clean": "rimraf dist",
     "switch:v3": "vue-demi-switch 3 vue3",
     "switch:v2": "vue-demi-switch 2 vue2",
