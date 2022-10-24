@@ -1,20 +1,24 @@
 {
   "name": "@wefly/vue-ui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    },
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
     "./es/*": "./es/*.mjs",
     "./es/*.mjs": "./es/*.mjs",
     "./es/*/*": "./es/*/*.mjs",
-    "./es/*/": "./es/*/index.mjs",
     "./es/*/*.mjs": "./es/*/*.mjs",
     "./cjs/*": "./cjs/*.js",
     "./cjs/*.js": "./cjs/*.js",
-    "./cjs/*/": "./cjs/*/index.js",
     "./cjs/*/*": "./cjs/*/*.js",
     "./cjs/*/*.mjs": "./cjs/*/*.js",
     "./*": "./*"
@@ -26,7 +30,7 @@
     "scripts"
   ],
   "scripts": {
-    "postinstall": "node ./scripts/postinstall.mjs",
+    "postinstall": "rimraf es && rimraf cjs &&node ./scripts/postinstall.mjs",
     "clean": "rimraf dist",
     "switch:v3": "vue-demi-switch 3 vue3",
     "switch:v2": "vue-demi-switch 2 vue2",

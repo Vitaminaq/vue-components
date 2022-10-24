@@ -6,6 +6,10 @@ import esbuild from 'rollup-plugin-esbuild'
 import { target, writeBundles, buildConfigEntries, workRoot, getVuePlugins } from './utils';
 import { version } from "vue-demi";
 
+/**
+ * 未来的展望 - 后续构建工具切换，更细粒度的控制构建流程
+ */
+
 export const buildModules = async () => {
     console.log("当前vue版本", version);
     const input = glob.sync('src/components/**/*.{js,ts,vue}', {

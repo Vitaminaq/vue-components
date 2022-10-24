@@ -15,9 +15,6 @@ const switchVersion = async () => {
     const libDest = path.join(libSrc, "../..");
     await fse.copySync(libSrc, libDest);
 
-    // const typeSrc = path.join(rootSrc, `./types/${dirname}`);
-    // const typeDest = path.join(libSrc, "../vue-types");
-    // fse.copySync(typeSrc, typeDest);
     console.log("组件库版本切换成功，请放一万个心使用！！！");
   } catch (e) {
     console.log("组件库版本切换失败！！！", e);
