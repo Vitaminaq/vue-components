@@ -11,5 +11,5 @@ export default defineConfig(process.env.NODE_ENV === 'development' ? {
       '@component': resolve("./src/components"),
       vue: resolve("./node_modules/vue3")
     }
-  }
+  },
 } : {});

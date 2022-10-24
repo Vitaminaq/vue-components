@@ -1,5 +1,5 @@
 <template>
-    <div>{{ props.msg }}</div>
+    <div class="vue-ui-card">{{ props.msg }}</div>
 </template>
 <script lang="ts" setup>
 const props = defineProps({

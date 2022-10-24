@@ -3,6 +3,7 @@ import glob from "glob";
 import { isVue3, version } from "vue-demi";
 import dts from "vite-plugin-dts";
 import { resolve, workRoot, getVuePlugins } from "./utils";
+import StyleLoader from '../plugins/style-loader';
 
 export const start = async () => {
   console.log("当前vue版本", version);
@@ -19,7 +20,7 @@ export const start = async () => {
     files.forEach(async (file) => {
       console.log('需要构建的组件清单：', name, file);
 
-      const plugins = [...vuePlugins];
+      const plugins = [...vuePlugins, StyleLoader()];
 
       plugins.push(
         dts({
@@ -61,6 +62,7 @@ export const start = async () => {
             },
         },
         build: {
+          assetsDir: resolve(`./dist/${name}/es/`),
           emptyOutDir: false,
           minify: 'esbuild',
           sourcemap: true,
@@ -77,6 +79,10 @@ export const start = async () => {
                 preserveModules: true,
                 preserveModulesRoot: `${workRoot}/src/components`,
                 entryFileNames: `[name].mjs`,
+                // assetFileNames: (assetInfo) => {
+                //   console.log(assetInfo, 'jjjjjjjjjjjjjjjjjjjjjjjjj');
+                //   return 'assets/[name][extname]';
+                // }
               },
               {
                 format: "cjs",
@@ -84,7 +90,7 @@ export const start = async () => {
                 preserveModules: true,
                 preserveModulesRoot: `${workRoot}/src/components`,
                 exports: "named",
-                entryFileNames: `[name].js`,
+                entryFileNames: `[name].js`
               },
             ],
           },

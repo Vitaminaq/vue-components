@@ -1,11 +1,11 @@
 {
   "name": "@wefly/vue-ui",
-  "version": "1.0.7",
-  "type": "module",
+  "version": "1.0.8",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "exports": {
     ".": {
       "require": "./lib/index.js",
@@ -27,18 +27,20 @@
     "dist",
     "es",
     "cjs",
-    "scripts"
+    "scripts",
+    "style"
   ],
   "scripts": {
     "postinstall": "node ./scripts/postinstall.mjs",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rimraf style",
     "switch:v3": "vue-demi-switch 3 vue3",
     "switch:v2": "vue-demi-switch 2 vue2",
     "dev": "npm run switch:v3 && cross-env NODE_ENV=development vite",
     "build:v3": "npm run switch:v3 && jiti ./build/component",
     "build:v2": "npm run switch:v2 && jiti ./build/component",
-    "build": "npm run clean && npm run build:v3 && npm run build:v2",
-    "build:m": "npm run clean && jiti ./build/modules"
+    "build": "npm run clean && npm run build:v3 && npm run build:v2 && npm run build:style",
+    "build:m": "npm run clean && jiti ./build/modules",
+    "build:style": "gulp --require @esbuild-kit/cjs-loader"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
@@ -47,22 +49,31 @@
     "vue-demi": "^0.13.11"
   },
   "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.4.0",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/gulp": "^4.0.9",
     "@types/node": "^18.11.2",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vue/composition-api": "^1.7.1",
     "@vue/runtime-dom": "^3.2.31",
+    "chalk": "^5.1.2",
+    "consola": "^2.15.3",
     "esbuild": "0.14.47",
     "fast-glob": "^3.2.12",
     "glob": "^8.0.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
     "jiti": "^1.16.0",
-    "less": "^4.1.3",
-    "less-loader": "^11.1.0",
     "local-pkg": "^0.4.2",
     "rimraf": "^3.0.2",
     "rollup": "^3.2.3",
     "rollup-plugin-esbuild": "^4.10.1",
+    "sass": "^1.55.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.6.4",
     "unplugin-vue2-script-setup": "^0.11.3",
     "vite": "^3.1.8",
