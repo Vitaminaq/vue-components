@@ -33,14 +33,11 @@ export interface BuildInfo {
   format: ModuleFormat
   ext: 'mjs' | 'cjs' | 'js'
   output: {
-    /** e.g: `es` */
     name: string
-    /** e.g: `dist/element-plus/es` */
     path: string
   }
 
   bundle: {
-    /** e.g: `element-plus/es` */
     path: string
   }
 }
