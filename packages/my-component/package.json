@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-ui",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -36,6 +36,7 @@
     "switch:v3": "vue-demi-switch 3 vue3",
     "switch:v2": "vue-demi-switch 2 vue2",
     "dev": "npm run switch:v3 && cross-env NODE_ENV=development vite",
+    "dev2": "npm run switch:v2 && cross-env NODE_ENV=development vite",
     "build:v3": "npm run switch:v3 && jiti ./build/component",
     "build:v2": "npm run switch:v2 && jiti ./build/component",
     "build": "npm run clean && npm run build:v3 && npm run build:v2 && npm run build:style",
@@ -80,8 +81,17 @@
     "vite-plugin-dts": "^1.6.6",
     "vite-plugin-vue2": "^2.0.2",
     "vue-template-compiler": "2.6.14",
-    "vue-tsc": "^0.40.4",
+    "vue-tsc": "^1.0.9",
     "vue2": "npm:vue@2.6.14",
     "vue3": "npm:vue@^3.2.41"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   }
 }

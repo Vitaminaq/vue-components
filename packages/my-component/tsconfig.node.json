@@ -4,5 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": [
+    "src/components/Button/ButtonColor.vue",
+    "src/components/SvgIcon/SvgIcon.vue",
+    "src/components/App.vue",
+  ]
 }

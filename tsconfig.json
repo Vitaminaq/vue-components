@@ -16,6 +16,7 @@
   "exclude": [
     "**/demo/**",
     "**/**/**/dist/**",
-    "scripts"
+    "scripts",
+    "**/scripts/**"
   ]
 }

@@ -1,0 +1,41 @@
+.com-btn {
+    position: relative;
+
+	&__operate {
+        padding-right: 45px;
+    }
+}
+	
+
+.com-btn__no_border {
+    border: none;
+}
+
+.com-btn__no_radius {
+    border-radius: 0;
+}
+
+.icon {
+    display: flex;
+	align-items: center;
+}
+	
+
+.com-btn__operate-box {
+    position: absolute;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 8px;
+	height: 100%;
+	&:after {
+        content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1px;
+		height: 100%;
+		background-color: rgba(16, 21, 135, 0.2);
+    }
+}
