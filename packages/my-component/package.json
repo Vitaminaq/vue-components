@@ -41,7 +41,8 @@
     "build:v2": "npm run switch:v2 && jiti ./build/component",
     "build": "npm run clean && npm run build:v3 && npm run build:v2 && npm run build:style",
     "build:m": "npm run clean && jiti ./build/modules",
-    "build:style": "gulp --require @esbuild-kit/cjs-loader"
+    "build:style": "gulp --require @esbuild-kit/cjs-loader",
+    "build:icon": "jiti ./build/icon"
   },
   "dependencies": {
     "cross-env": "^7.0.3",

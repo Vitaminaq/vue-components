@@ -1,102 +1,28 @@
 <template>
-	<svg
-		class="ed-svg-icon"
-		:class="{
-			'ed-svg-icon__circle': props.circle,
-			'ed-svg-icon__hover': props.hoverChange,
-			'ed-svg-icon__active': props.hoverActive,
-			'ed-svg-icon__pointer': props.hoverPointer
-		}"
-		:style="{
-			width: iconWidth + 'px',
-			height: iconHeight + 'px',
-			color: props.color
-		}"
-	>
+	<svg>
 		<use
-			:xlink:href="svgName"
-			:fill="props.color"
+			:xlink:href="props.name"
 		/>
 	</svg>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from "vue-demi";
+<script setup lang="ts">
+import { computed, PropType } from "vue-demi";
 
-export default defineComponent({
-	name: "EdSvgIcon",
-	props: {
-		name: {
-			type: String,
-			required: true,
-			default: "move"
-		},
-		color: {
-			type: String,
-			default: ""
-		},
-		enterColor: {
-			type: String,
-			default: ""
-		},
-		activeColor: {
-			type: String,
-			default: ""
-		},
-		width: {
-			type: Number,
-			default: 0
-		},
-		height: {
-			type: Number,
-			default: 0
-		},
-		size: {
-			type: Number,
-			default: -1
-		},
-		circle: {
-			type: Boolean,
-			default: false
-		},
-		hoverChange: {
-			type: Boolean,
-			default: false
-		},
-		hoverActive: {
-			type: Boolean,
-			default: false
-		},
-		hoverPointer: {
-			type: Boolean,
-			default: false
-		}
-	},
-	setup(props) {
-		const iconWidth = computed(() => {
-			if (props.width) {
-				return props.width;
-			}
-			return props.size;
-		});
+const useCount: any = {
+	arrow: 10,
+	btn: 1,
+	help_btn: 0
+}
 
-		const iconHeight = computed(() => {
-			if (props.height) {
-				return props.height;
-			}
-			return props.size;
-		});
-
-		const svgName = computed(() => {
-			return `#icon-${props.name}`;
-		});
-
-		return {
-			props,
-			iconWidth,
-			iconHeight,
-			svgName
-		};
+const props = defineProps({
+	name: {
+		type: Object as PropType<any>,
+		default: ''
 	}
+});
+
+const inline = computed(() => {
+	return useCount[props.name] > 1;
 });
 </script>
