@@ -40,13 +40,6 @@ export const start = async () => {
                 "@vue/runtime-dom": ["node_modules/@vue/runtime-dom"],
               },
             },
-            // beforeWriteFile(filePath: string, content: string) {
-            //   console.log(filePath, 'jjjjjjjjjjjjjjjjjjjj')
-            //   return {
-            //     filePath: filePath.replace('components\\', '').replace('components/', ''),
-            //     content
-            //   };
-            // }
         })
       );
       await build({
@@ -79,10 +72,6 @@ export const start = async () => {
                 preserveModules: true,
                 preserveModulesRoot: `${workRoot}/src/components`,
                 entryFileNames: `[name].mjs`,
-                // assetFileNames: (assetInfo) => {
-                //   console.log(assetInfo, 'jjjjjjjjjjjjjjjjjjjjjjjjj');
-                //   return 'assets/[name][extname]';
-                // }
               },
               {
                 format: "cjs",

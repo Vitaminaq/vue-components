@@ -1,13 +1,11 @@
-import { App } from 'vue-demi'
-import Card from './Card.vue';
+import { App } from "vue-demi";
+import Card from "./card.vue";
 
-export {
-  Card
+const FlyCard = Card;
+
+FlyCard.install = function(app: App) {
+  app.component(FlyCard.name, FlyCard);
 }
 
-export default {
-    install(app: App): void {
-      app.component(Card.name, Card)
-    }
-  }
-  
+export { FlyCard };
+

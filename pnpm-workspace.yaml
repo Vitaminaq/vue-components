@@ -1,3 +1,4 @@
 packages:
   - packages/my-component
-  - packages/my-style
+  - packages/demo
+  - packages/unplugin-component-resolvers

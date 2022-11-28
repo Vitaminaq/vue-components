@@ -5,9 +5,5 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "src/components/button/ButtonColor.vue",
-    "src/components/SvgIcon/SvgIcon.vue",
-    "src/components/App.vue",
-  ]
+  "include": ["vite.config.ts"]
 }

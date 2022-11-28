@@ -1,10 +1,10 @@
 import { App } from "vue-demi";
-import Button from "./Button.vue";
+import Button from "./button.vue";
 
-export { Button };
+const FlyButton = Button;
 
-export default {
-  install(app: App): void {
-    app.component(Button.name, Button);
-  },
-};
+FlyButton.install = function(app: App) {
+  app.component(FlyButton.name, FlyButton);
+}
+
+export { FlyButton };

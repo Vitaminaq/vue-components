@@ -9,14 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@wefly/vue-ui": "^1.0.9",
-    "quarkd": "^1.0.21",
+    "@wefly/unplugin-component-resolvers": "workspace:*",
+    "@wefly/vue-ui": "workspace:*",
     "vue": "^3.2.37",
     "vue-demi": "^0.13.11"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.1.0",
+    "@vitejs/plugin-vue": "^3.1.2",
     "typescript": "^4.6.4",
+    "unplugin-auto-import": "^0.12.0",
+    "unplugin-vue-components": "^0.22.11",
     "vite": "^3.1.0",
     "vue-tsc": "^0.40.4",
     "vue3": "npm:vue@^3.2.41"
